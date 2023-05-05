@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 //Create a request with an async function, need to wait for the information to be available
-//Try: fetch the information from the server then convert it to json 
-
 const fetchData = async(id) => {
+
+    //Try: fetch the information from the server then convert it to json
     try {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         const data = await response.json()
@@ -22,27 +22,18 @@ const fetchData = async(id) => {
         const pokemon = {
                 //create property to access image data
                 img: data.sprites.other.dream_world.front_default,
-
-                //create property to access data
+               
                 name: data.name,
-
-                //create a property to access data
+               
                 hp: data.stats[0].base_stat,
-
-                //create a property to access data
+                
                 xp: data.base_experience,
-
-                //create a property to access data
+                
                 attack: data.stats[1].base_stat,
 
-                //create a property to access data
                 special: data.stats[3].base_stat,
 
-                //create a property to access data
                 defense: data.stats[2].base_stat,
-
-
-
             }
             //Create function to update the data 
         updateCard(pokemon)
@@ -69,7 +60,7 @@ const updateCard = (pokemon) => {
     //use the selector to access the class that we're trying to change, modify property inside the "pokemon" object 
     clone.querySelector('.card-body-image').setAttribute('src', pokemon.img)
 
-    //use the selector to access the class that we're trying to change, modify property inside the "pokemon" object 
+    
     clone.querySelector('.card-body-image').innerHTML = `${pokemon.name} <span>${pokemon.hp}hp </span>`,
 
         //use the selector to access the class that we're trying to change, modify property inside the "pokemon" object 
@@ -77,11 +68,9 @@ const updateCard = (pokemon) => {
 
         //use the selector to access the class that we're trying to change, use h3 to change it directly, use array to indicate space, modify property inside the "pokemon" object
         clone.querySelectorAll('.card-footer-social h3')[0].textContent = pokemon.attack + 'K',
-
-        //use the selector to access the class that we're trying to change, use h3 to change it directly, use array to indicate space, modify property inside the "pokemon" object
+        
         clone.querySelectorAll('.card-footer-social h3')[0].textContent = pokemon.special + 'K',
-
-        //use the selector to access the class that we're trying to change, use h3 to change it directly, use array to indicate space, modify property inside the "pokemon" object
+   
         clone.querySelectorAll('.card-footer-social h3')[0].textContent = pokemon.defense + 'K',
 
         //use the fragment to save the specified piece of code 
